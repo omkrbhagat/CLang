@@ -1,0 +1,67 @@
+/*
+    the `say_hello` is a target that behaves like a function
+    in any programming language, and echo will be considered
+    as an action.
+*/
+
+say_hello:
+    echo "Hello, World !"
+
+—————————————————————————————————————————————————————————
+/*
+    we can see the echo operation itself is displaying.
+    If we don't want to display the echo command on the output,
+    execute the echo starting with '@' symbol. To suppress the echo.
+*/
+
+say_hello:
+    @echo "Hello, World !"
+
+—————————————————————————————————————————————————————————
+/*
+    let's add few more targets, such as `generate` & `list`.
+    If we execute the `make` command, it only execute the first
+    target because it is the default target of the makefile.
+    
+    change the default target by including the `.DEFAULT_GOAL` option
+*/
+.DEFAULT_GOAL := generate
+say_hello:
+    @echo "Hello, World !"
+
+generate:
+    @echo "Creating files"
+    touch file-{1..2}.txt
+
+list:
+    @echo "Listing files"
+    ls
+
+—————————————————————————————————————————————————————————
+/*
+    the `.DEFAULT_GOAL`option executes only one target.
+    To execute more than one target use `all` option
+*/
+all: say_hello generate
+say_hello:
+    @echo "Hello, World !"
+
+generate:
+    @echo "Creating files"
+    touch file-{1..2}.txt
+
+—————————————————————————————————————————————————————————
+/*
+    By default, Makefile targets are "file targets" - they are used to build files from other files. Make assumes its target is a file, and this makes writing Makefiles relatively easy.
+    However, sometimes you want your Makefile to run commands that do not represent physical file in the file system. Good examples for this are the common targets `clean` and `all`.
+    Chances are this isn't the case, but you may potentially have a file named `clean` target would be associated with this file & Make will only run it when the file doesn't appear to be up-to-date with regards to its dependencies. These special targets are called `phony` and you can explicitly tell Make they're not associated with files, eg:
+*/
+.PHONY: clean
+clean:
+    rm -rf *.o
+
+/*
+    Now `make clean` will run as expected even if you do have a file named clean.
+*/
+
+—————————————————————————————————————————————————————————
