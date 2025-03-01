@@ -1,5 +1,57 @@
-.vscode
-.vs
+# Ignoring files & directories with exception:
+# Ignoring all files & directories in the logs directory
+logs/
+.vscode/
+.vs/
+
+# Except the debug/ directory in logs
+!logs/debug/
+
+# Ignoring all files in logs/debug/
+logs/debug/*
+
+# Except debug.log in logs/debug/
+!logs/debug/debug.log
+
+# — — —
+# Ignoring all .exe & .db files in any subdirectory
+**/*.exe
+**/*.db
+
+# — — —
+# Ignoring all files by extension, but including a specific one:
+# Ignore all .log files
+*.log
 *.ini
 *.exe
 *.db
+
+# Except error.log
+!error.log
+
+# — — —
+# Ignoring files with a specific pattern in a subdirectory:
+# Ignoring all test files in any subdirectory that starts with test
+test*/**/*Test.java
+
+# — — —
+# Ignoring files except in a particular directory:
+# Ignore all .env files
+*.env
+
+# Except in the config directory
+!config/*.env
+
+# — — —
+# Ignoring everything except specific directories:
+# Ignore everything
+*
+
+# Except src/ and include/ directories
+!src/
+!include/
+
+# Ignore everything in src/ except .c and .h files
+src/*
+!src/**/*.c
+!src/**/*.h
