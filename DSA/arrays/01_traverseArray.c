@@ -11,6 +11,19 @@ void printArr(int *arr, int size) {
 	}
 }
 
+/*
+void printArr(int *arr, int size) {
+	printf("[%d, ", *arr);
+	for(int i = 1; i < size; i++) {
+		if(i == size-1) {
+			printf("%d]", *(arr+i));
+			break;
+		}
+		printf("%d, ", *(arr+i));
+	}
+}
+*/
+
 int main(int argc, char *argv[]) {
 	int n;
 	printf("No. of Elements: ");
@@ -22,5 +35,6 @@ int main(int argc, char *argv[]) {
 		scanf("%d", &arr[i]);
 	}
 	
+	*(arr+2) = 2;
 	printArr(arr, n);
 }
